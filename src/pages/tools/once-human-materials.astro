@@ -1,0 +1,62 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { withBase } from "../../utils/withBase";
+---
+
+<PageLayout
+  title="Once Human · Material checklist"
+  description="A static checklist for condenser prep — tick boxes reset when you refresh (by design)."
+  canonicalPath="/tools/once-human-materials/"
+>
+  <p class="pill pill--accent">Tool</p>
+  <h1>Once Human · Material checklist</h1>
+  <p class="muted" style="max-width: 72ch">
+    Pair with the <a href={withBase("/guides/once-human-condenser-loop/")}>condenser loop</a> guide. Values are illustrative — replace quantities after each patch in the Markdown source.
+  </p>
+
+  <div class="notice" style="margin: 1.25rem 0">
+    <strong style="color: var(--text)">Privacy:</strong> this page does not call external APIs. Ticks live only in your browser session until refresh.
+  </div>
+
+  <div class="stack" style="margin-top: 1.5rem">
+    <fieldset class="card" style="border: 1px solid var(--border)">
+      <legend style="padding: 0 0.35rem">Vendor day (UTC)</legend>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Saturday solvent window</span>
+        <input type="checkbox" name="sat" />
+      </label>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Weeknight tax acknowledged</span>
+        <input type="checkbox" name="tax" />
+      </label>
+    </fieldset>
+
+    <fieldset class="card" style="border: 1px solid var(--border)">
+      <legend style="padding: 0 0.35rem">Bench safety</legend>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">No mid-craft bench upgrades</span>
+        <input type="checkbox" name="bench" />
+      </label>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Relog if stage 2 UI skipped</span>
+        <input type="checkbox" name="relog" />
+      </label>
+    </fieldset>
+
+    <fieldset class="card" style="border: 1px solid var(--border)">
+      <legend style="padding: 0 0.35rem">Backlog snapshot</legend>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Industrial solvent ×12</span>
+        <input type="checkbox" name="solvent" />
+      </label>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Loop kit cores ×4</span>
+        <input type="checkbox" name="cores" />
+      </label>
+      <label class="stack" style="margin-top: 0.75rem">
+        <span class="muted">Rare accelerants banked (optional)</span>
+        <input type="checkbox" name="accel" />
+      </label>
+    </fieldset>
+  </div>
+</PageLayout>

@@ -1,0 +1,30 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Search" description="Static search via Pagefind (optional build step)." canonicalPath="/search/">
+  <h1>Search</h1>
+  <p class="muted" style="max-width: 72ch">
+    Pagefind is generated <strong>after</strong> <code>astro build</code>. Run <code>npm run build:search</code>, deploy the <code>dist/</code> folder, then uncomment the UI block below to enable client-side search with
+    zero server infrastructure.
+  </p>
+
+  <div class="notice" style="margin: 1.5rem 0">
+    <strong style="color: var(--text)">Dev mode:</strong> Pagefind assets are not emitted until the post-build step. Use the nav links or <code>/guides/</code> while local-previewing.
+  </div>
+
+  <!--
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script src="/pagefind/pagefind-ui.js" type="module"></script>
+  <div id="pagefind-ui"></div>
+  <script type="module">
+    await import("/pagefind/pagefind-ui.js");
+    new PagefindUI({ element: "#pagefind-ui", showSubResults: true, resetStyles: false });
+  </script>
+  -->
+
+  <div id="pagefind-ui" class="slot" style="margin-top: 2rem">
+    <div class="slot__label">Pagefind UI mounts here</div>
+    <p class="slot-placeholder">Uncomment the block in <code>src/pages/search.astro</code> after your first <code>npm run build:search</code> deployment.</p>
+  </div>
+</PageLayout>

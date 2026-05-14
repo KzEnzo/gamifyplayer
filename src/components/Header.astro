@@ -1,0 +1,35 @@
+---
+import { withBase } from "../utils/withBase";
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+function isCurrent(href: string) {
+  const h = href.replace(/\/$/, "") || "/";
+  if (h === "/") return pathname === "/";
+  return pathname === h || pathname.startsWith(`${h}/`);
+}
+
+const links = [
+  { href: withBase("/"), label: "Home" },
+  { href: withBase("/guides/"), label: "Guides" },
+  { href: withBase("/news/"), label: "Briefings" },
+  { href: withBase("/tools/"), label: "Tools" },
+  { href: withBase("/search/"), label: "Search" },
+  { href: withBase("/about/"), label: "About" },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="logo" href={withBase("/")}>Gamify<span>Player</span></a>
+    <nav class="nav" aria-label="Primary">
+      {
+        links.map(({ href, label }) => (
+          <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

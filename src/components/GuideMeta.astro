@@ -1,0 +1,25 @@
+---
+import { games, type GameId } from "../data/games";
+
+interface Props {
+  game: GameId;
+  gameVersion: string;
+  lastVerified: Date;
+  platforms: string[];
+}
+
+const { game, gameVersion, lastVerified, platforms } = Astro.props;
+const g = games[game];
+const verified = lastVerified.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<div class="meta-bar" aria-label="Guide verification">
+  <span class="pill" style={`border-color: ${g.accent}55; color: ${g.accent}`}>{g.name}</span>
+  <span class="pill">Build / patch: {gameVersion}</span>
+  <span class="pill pill--warn">Last verified: {verified}</span>
+  <span class="pill">Platforms: {platforms.join(", ")}</span>
+</div>

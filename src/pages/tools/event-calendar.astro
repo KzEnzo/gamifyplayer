@@ -1,0 +1,44 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+---
+
+<PageLayout title="UTC event calendar shell" description="A reusable weekly template for seasonal live games." canonicalPath="/tools/event-calendar/">
+  <p class="pill pill--accent">Tool</p>
+  <h1>UTC event calendar shell</h1>
+  <p class="muted" style="max-width: 72ch">
+    Duplicate this table per season in your notes. We keep times in <strong>UTC</strong> so squads across regions share one reference.
+  </p>
+
+  <div class="prose" style="margin-top: 1.5rem">
+    <table>
+      <thead>
+        <tr>
+          <th>Weekday (UTC)</th>
+          <th>Window</th>
+          <th>Intent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tuesday</td>
+          <td>00:00 – 01:00</td>
+          <td>Patch watch + vendor refresh check</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>17:00 – 20:00</td>
+          <td>Squad prep for weekend economy bias</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>10:00 – 12:00</td>
+          <td>Once Human rotating vendor (see briefing)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="muted" style="margin-top: 1.25rem; max-width: 72ch">
+    Replace rows when developers publish official seasonal calendars — link to their blog from your fork of this template.
+  </p>
+</PageLayout>
