@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import { games, type GameId } from "../../data/games";
 import { withBase } from "../../utils/withBase";
 
-const guides = (await getCollection("guides")).sort((a, b) => {
+const guides = (await getCollection("guides", ({ data }) => data.publish !== false)).sort((a, b) => {
   const af = a.data.hasAnimatedMedia && a.data.animatedMediaSrc ? 2 : a.data.hasAnimatedMedia ? 1 : 0;
   const bf = b.data.hasAnimatedMedia && b.data.animatedMediaSrc ? 2 : b.data.hasAnimatedMedia ? 1 : 0;
   if (bf !== af) return bf - af;

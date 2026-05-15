@@ -1,10 +1,15 @@
 ---
 title: "Once Human — economy vendor rotation (May digest)"
-description: "What changed for crafters, without patch-note wall-of-text."
+summary: "What changed for crafters, without patch-note wall-of-text."
+date: 2026-05-10
+tags:
+  - once-human
+  - official
+  - economy
 game: "once-human"
-published: 2026-05-10
 kind: "official"
 freshness: "Vendor tables confirmed for 7 days — re-check after hotfix"
+publish: true
 ---
 
 ## TL;DR

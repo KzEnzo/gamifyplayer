@@ -1,18 +1,26 @@
 ---
 import { withBase } from "../utils/withBase";
 
-const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+/** Normalize so `/foo/` and `/foo` match; root becomes `/`. */
+function normPath(p: string) {
+  const t = p.replace(/\/+$/, "");
+  return t === "" ? "/" : t;
+}
+
+const pathname = normPath(Astro.url.pathname);
+const homePath = normPath(withBase("/"));
 
 function isCurrent(href: string) {
-  const h = href.replace(/\/$/, "") || "/";
-  if (h === "/") return pathname === "/";
-  return pathname === h || pathname.startsWith(`${h}/`);
+  const item = normPath(href);
+  /* Home must match exactly — otherwise /base/foo matches home /base */
+  if (item === homePath) return pathname === homePath;
+  return pathname === item || pathname.startsWith(`${item}/`);
 }
 
 const links = [
   { href: withBase("/"), label: "Home" },
   { href: withBase("/guides/"), label: "Guides" },
-  { href: withBase("/news/"), label: "Briefings" },
+  { href: withBase("/briefings/"), label: "Briefings" },
   { href: withBase("/tools/"), label: "Tools" },
   { href: withBase("/search/"), label: "Search" },
   { href: withBase("/about/"), label: "About" },

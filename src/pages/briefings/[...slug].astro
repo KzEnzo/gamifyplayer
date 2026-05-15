@@ -1,0 +1,61 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const items = await getCollection("briefings", ({ data }) => data.publish !== false);
+  return items.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const kindLabel =
+  d.kind === "official"
+    ? "Official channel digest"
+    : d.kind === "stream"
+      ? "Stream decode"
+      : d.kind === "preview"
+        ? "Forward-looking prep"
+        : "Briefing";
+
+const gameLabel = d.game
+  ? d.game === "red-desert"
+    ? "Red Desert"
+    : d.game === "gta-6"
+      ? "GTA 6"
+      : "Once Human"
+  : null;
+---
+
+<PageLayout title={d.title} description={d.summary} canonicalPath={`/briefings/${entry.slug}/`}>
+  <article class="prose">
+    <p class="pill pill--accent">{kindLabel}</p>
+    <h1>{d.title}</h1>
+    <p class="muted">
+      {d.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+      {gameLabel && <> · {gameLabel}</>}
+    </p>
+    {
+      d.tags.length > 0 && (
+        <p class="meta-bar" style="margin-top: 0.5rem">
+          {d.tags.map((t) => (
+            <span class="pill">{t}</span>
+          ))}
+        </p>
+      )
+    }
+    {
+      d.freshness && (
+        <p class="pill pill--warn" style="margin-top: 0.75rem; width: fit-content">
+          Freshness: {d.freshness}
+        </p>
+      )
+    }
+    <Content />
+  </article>
+</PageLayout>

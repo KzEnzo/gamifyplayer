@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import GuideLayout from "../../layouts/GuideLayout.astro";
 
 export async function getStaticPaths() {
-  const guides = await getCollection("guides");
+  const guides = await getCollection("guides", ({ data }) => data.publish !== false);
   return guides.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -27,6 +27,8 @@ const d = entry.data;
   animatedMediaAlt={d.animatedMediaAlt}
   canonicalPath={`/guides/${entry.slug}/`}
   headings={headings}
+  tags={d.tags}
+  difficulty={d.difficulty}
 >
   <Content />
 </GuideLayout>

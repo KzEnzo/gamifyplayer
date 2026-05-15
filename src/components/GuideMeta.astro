@@ -6,9 +6,11 @@ interface Props {
   gameVersion: string;
   lastVerified: Date;
   platforms: string[];
+  tags?: string[];
+  difficulty?: "Beginner" | "Intermediate" | "Advanced";
 }
 
-const { game, gameVersion, lastVerified, platforms } = Astro.props;
+const { game, gameVersion, lastVerified, platforms, tags = [], difficulty } = Astro.props;
 const g = games[game];
 const verified = lastVerified.toLocaleDateString("en-US", {
   year: "numeric",
@@ -22,4 +24,8 @@ const verified = lastVerified.toLocaleDateString("en-US", {
   <span class="pill">Build / patch: {gameVersion}</span>
   <span class="pill pill--warn">Last verified: {verified}</span>
   <span class="pill">Platforms: {platforms.join(", ")}</span>
+  {difficulty && <span class="pill pill--accent">Difficulty: {difficulty}</span>}
+  {tags.map((t) => (
+    <span class="pill" key={t}>{t}</span>
+  ))}
 </div>

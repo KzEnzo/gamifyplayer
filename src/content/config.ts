@@ -12,19 +12,26 @@ const guides = defineCollection({
     hasAnimatedMedia: z.boolean().default(false),
     animatedMediaSrc: z.string().optional(),
     animatedMediaAlt: z.string().optional(),
+    /** Set `false` on template files so they are not built as pages. */
+    publish: z.boolean().default(true),
+    tags: z.array(z.string()).default([]),
+    difficulty: z.enum(["Beginner", "Intermediate", "Advanced"]).optional(),
   }),
 });
 
-const news = defineCollection({
+const briefings = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    summary: z.string(),
     game: z.enum(["red-desert", "gta-6", "once-human"]).optional(),
-    published: z.coerce.date(),
-    kind: z.enum(["official", "stream", "preview"]),
-    freshness: z.string(),
+    kind: z.enum(["official", "stream", "preview"]).optional(),
+    freshness: z.string().optional(),
+    /** Set `false` on template files so they are not built as pages. */
+    publish: z.boolean().default(true),
   }),
 });
 
-export const collections = { guides, news };
+export const collections = { guides, briefings };

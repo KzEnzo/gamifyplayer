@@ -1,10 +1,14 @@
 ---
 title: "Red Desert — technical test scope creep (community stream)"
-description: "What was actually shown vs. what was inferred — keep expectations bounded."
+summary: "What was actually shown vs. what was inferred — keep expectations bounded."
+date: 2026-05-09
+tags:
+  - red-desert
+  - stream
 game: "red-desert"
-published: 2026-05-09
 kind: "stream"
 freshness: "Stream VODs age quickly — treat clips as provisional"
+publish: true
 ---
 
 ## What we are confident about

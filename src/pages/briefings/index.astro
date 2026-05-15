@@ -4,8 +4,8 @@ import { getCollection } from "astro:content";
 import { games, type GameId } from "../../data/games";
 import { withBase } from "../../utils/withBase";
 
-const items = (await getCollection("news")).sort(
-  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+const items = (await getCollection("briefings", ({ data }) => data.publish !== false)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
 function gameName(id?: GameId) {
@@ -14,7 +14,7 @@ function gameName(id?: GameId) {
 }
 ---
 
-<PageLayout title="Briefings" description="Lightweight digests of official updates, streams, and forward-looking prep." canonicalPath="/news/">
+<PageLayout title="Briefings" description="Lightweight digests of official updates, streams, and forward-looking prep." canonicalPath="/briefings/">
   <h1>Briefings</h1>
   <p class="muted" style="max-width: 62ch">
     We are not a headline factory — each note explains what changed for players and how it connects to our version-checked guides.
@@ -23,9 +23,9 @@ function gameName(id?: GameId) {
     {
       items.map((n) => (
         <li>
-          <a href={withBase(`/news/${n.slug}/`)}>{n.data.title}</a>
+          <a href={withBase(`/briefings/${n.slug}/`)}>{n.data.title}</a>
           <div class="muted" style="margin-top: 0.25rem">
-            {gameName(n.data.game)} · {n.data.published.toLocaleDateString("en-US")} · {n.data.kind}
+            {gameName(n.data.game)} · {n.data.date.toLocaleDateString("en-US")} · {n.data.tags.slice(0, 3).join(", ")}
           </div>
         </li>
       ))

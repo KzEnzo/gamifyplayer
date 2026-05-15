@@ -5,8 +5,8 @@ import { gameOrder, games, type GameId } from "../data/games";
 import AnimatedMediaSlot from "../components/AnimatedMediaSlot.astro";
 import { withBase } from "../utils/withBase";
 
-const guides = await getCollection("guides");
-const news = await getCollection("news");
+const guides = await getCollection("guides", ({ data }) => data.publish !== false);
+const briefings = await getCollection("briefings", ({ data }) => data.publish !== false);
 
 function homeGuideSort(a: (typeof guides)[number], b: (typeof guides)[number]) {
   const af = a.data.hasAnimatedMedia && a.data.animatedMediaSrc ? 2 : a.data.hasAnimatedMedia ? 1 : 0;
@@ -18,7 +18,7 @@ function homeGuideSort(a: (typeof guides)[number], b: (typeof guides)[number]) {
 const sortedGuides = [...guides].sort(homeGuideSort);
 const motionSpotlight = sortedGuides.filter((g) => g.data.hasAnimatedMedia).slice(0, 3);
 const latestGuides = sortedGuides.slice(0, 6);
-const latestNews = [...news].sort((a, b) => b.data.published.getTime() - a.data.published.getTime()).slice(0, 4);
+const latestBriefings = [...briefings].sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 4);
 
 function gameName(id: GameId) {
   return games[id].name;
@@ -141,15 +141,16 @@ function gameName(id: GameId) {
 
   <div class="section-title">
     <h2>Briefings digest</h2>
-    <a href={withBase("/news/")}>View all</a>
+    <a href={withBase("/briefings/")}>View all</a>
   </div>
   <ul class="list-plain">
     {
-      latestNews.map((n) => (
+      latestBriefings.map((n) => (
         <li>
-          <a href={withBase(`/news/${n.slug}/`)}>{n.data.title}</a>
+          <a href={withBase(`/briefings/${n.slug}/`)}>{n.data.title}</a>
           <div class="muted" style="margin-top: 0.25rem">
-            {n.data.published.toLocaleDateString("en-US")} · {n.data.kind} · {n.data.freshness}
+            {n.data.date.toLocaleDateString("en-US")} · {n.data.tags.slice(0, 4).join(", ")}
+            {n.data.freshness && <> · {n.data.freshness}</>}
           </div>
         </li>
       ))

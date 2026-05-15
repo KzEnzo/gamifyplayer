@@ -1,10 +1,14 @@
 ---
 title: "GTA 6 — pre-launch prep you can do today (accounts & saves)"
-description: "Non-spoiler housekeeping that survives hype cycles — useful for returning players."
+summary: "Non-spoiler housekeeping that survives hype cycles — useful for returning players."
+date: 2026-05-07
+tags:
+  - gta-6
+  - preview
 game: "gta-6"
-published: 2026-05-07
 kind: "preview"
 freshness: "Valid until platform policies change — re-verify at launch"
+publish: true
 ---
 
 ## TL;DR

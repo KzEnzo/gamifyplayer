@@ -11,13 +11,13 @@ export function getStaticPaths() {
 const { game } = Astro.params as { game: GameId };
 const meta = games[game];
 
-const guides = (await getCollection("guides"))
+const guides = (await getCollection("guides", ({ data }) => data.publish !== false))
   .filter((g) => g.data.game === game)
   .sort((a, b) => b.data.lastVerified.getTime() - a.data.lastVerified.getTime());
 
-const briefings = (await getCollection("news"))
+const briefings = (await getCollection("briefings", ({ data }) => data.publish !== false))
   .filter((n) => n.data.game === game)
-  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const toolLinks: Record<GameId, { href: string; label: string }[]> = {
   "once-human": [
@@ -71,7 +71,7 @@ const toolLinks: Record<GameId, { href: string; label: string }[]> = {
 
   <div class="section-title">
     <h2>Briefings</h2>
-    <a href={withBase("/news/")}>All briefings</a>
+    <a href={withBase("/briefings/")}>All briefings</a>
   </div>
   {
     briefings.length === 0 ? (
@@ -80,9 +80,9 @@ const toolLinks: Record<GameId, { href: string; label: string }[]> = {
       <ul class="list-plain">
         {briefings.map((n) => (
           <li>
-            <a href={withBase(`/news/${n.slug}/`)}>{n.data.title}</a>
+            <a href={withBase(`/briefings/${n.slug}/`)}>{n.data.title}</a>
             <div class="muted" style="margin-top: 0.25rem">
-              {n.data.published.toLocaleDateString("en-US")} · {n.data.kind}
+              {n.data.date.toLocaleDateString("en-US")} · {n.data.tags.slice(0, 3).join(", ")}
             </div>
           </li>
         ))}
