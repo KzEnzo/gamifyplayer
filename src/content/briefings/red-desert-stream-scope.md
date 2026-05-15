@@ -1,6 +1,5 @@
 ---
 title: "Red Desert — technical test scope creep (community stream)"
-summary: "What was actually shown vs. what was inferred — keep expectations bounded."
 date: 2026-05-09
 tags:
   - red-desert
@@ -8,7 +7,7 @@ tags:
 game: "red-desert"
 kind: "stream"
 freshness: "Stream VODs age quickly — treat clips as provisional"
-summary: "A quick breakdown of confirmed changes, new features, and what to prepare for the next Red Desert test."  # 这行是新增的！
+summary: "What was actually shown vs. what was inferred — keep expectations bounded."
 publish: true
 ---
 
