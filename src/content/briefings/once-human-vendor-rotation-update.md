@@ -3,11 +3,12 @@ title: "Once Human — Vendor Rotation & What to Buy This Week"
 description: "A quick look at this week’s vendor inventory and the best items to stock up on."
 game: "once-human"
 date: 2026-05-21
-kind: "vendor-update"
+kind: "official"
 tags:
   - once-human
   - vendor
   - shopping
+summary: "A quick breakdown of confirmed changes, new features, and what to prepare for the next Red Desert test."  # 这行是新增的！
 publish: true
 ---
 

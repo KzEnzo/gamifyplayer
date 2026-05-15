@@ -3,11 +3,12 @@ title: "GTA 6 — Pre-Launch Prep You Can Do Today (Accounts & Saves)"
 description: "What you can do right now to get ready for GTA 6, including account setup and save transfers."
 game: "gta-6"
 date: 2026-05-21
-kind: "pre-launch"
+kind: "preview"
 tags:
   - gta-6
   - pre-launch
   - tips
+summary: "A quick breakdown of confirmed changes, new features, and what to prepare for the next Red Desert test."  # 这行是新增的！
 publish: true
 ---
 

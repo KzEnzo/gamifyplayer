@@ -8,6 +8,7 @@ tags:
   - red-desert
   - news
   - update
+summary: "A quick breakdown of confirmed changes, new features, and what to prepare for the next Red Desert test."  # 这行是新增的！
 publish: true
 ---
 
